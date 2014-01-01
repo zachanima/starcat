@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>API | Gearbox</title>
+    <title>API | *cat</title>
     <link href="../lib/prism.css" rel="stylesheet" type="text/css" />
     <link href="../style.css" rel="stylesheet" type="text/css" />
     <script src="../lib/jquery.min.js"></script>
     <script src="../lib/markdown.min.js"></script>
     <script src="../lib/prism.js"></script>
+    <script>
+function load(klass) {
+  if (klass == '') {
+    return;
+  }
+
+  $.ajax(klass + '.md', {
+    error: function() { $('#content').html('# 404 \n`' + klass + '.md` not found'); },
+    success: function(data) { $('#content').html(data); },
+    complete: function() {
+      $('#content').html(markdown.toHTML($('#content').html()));
+      Prism.highlightAll();
+      $('#content a').click(function() {
+        load($(this).attr('href').substring(2));
+      });
+    }
+  });
+}
+
+jQuery(function() {
+  
+  $('#sidebar').html(markdown.toHTML($('#sidebar').html()));
+
+  $('a').click(function() {
+    load($(this).attr('href').substring(2));
+  });
+
+  load(window.location.hash.substring(2));
+});
+    </script>
   </head>
   <body class="language-javascript">
+
+  <header>
+    <nav>
+      <a href="./index.htm"></a>
+      <ul>
+        <li><a href="../docs/index.htm">Documentation</a></li>
+        <li>API</li>
+        <li><a href="../examples/index.htm">Examples</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="box">
+    <div id="sidebar">
+* [GameObject](#/GameObject)
+* [Scene](#/Scene)
+    </div>
+
+    <div id="content">
+      <h1>*cat API documentation</h1>
+      Select a class on the left.
+    </div>
+  </div>
 
   </body>
 </html>
