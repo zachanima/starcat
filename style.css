@@ -51,7 +51,7 @@ nav > a:before {
 }
 
 nav > a:after {
-  content: 'js game library';
+  content: 'js game engine';
   font-size: 12pt;
   font-weight: normal;
   letter-spacing: -0.0625em;
