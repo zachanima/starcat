@@ -10,6 +10,14 @@ Particle emitter attached to [GameObject].
 
 ## Variables
 
+### colorOverLifetime
+
+##### [Gradient]
+
+Fill color of particle over its lifetime, or `null` to use single color defined
+by `startColor`.
+
+
 ### duration
 
 ##### Number
