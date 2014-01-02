@@ -14,6 +14,7 @@ function load(klass) {
   }
 
   $.ajax(klass + '.md', {
+    dataType: 'text',
     error: function() { $('#content').html('# 404 \n`' + klass + '.md` not found'); },
     success: function(data) { $('#content').html(data); },
     complete: function() {
